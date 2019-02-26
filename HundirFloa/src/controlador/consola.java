@@ -14,7 +14,9 @@ public class consola {
     static boolean sigue = true;
 
     //Por poder, puedes cambiar el tamaño del tablero
-    //y el número de barcos, pero creemos que la mejor experiencia consiste en:
+    //y el número de barcos, pero creemos que la mejor experiencia consiste en: 
+    // R- Eso es lo que piensas tu aun que estoy de acuerdo con el tablero
+    // R- creo que es mejor pedir cuanto barcos quieres
     //un tablero de 12x12
     //x1 Acorazado - 4 casillas
     //x2 Cruceros - 3 casillas
@@ -29,10 +31,21 @@ public class consola {
         int columnaIni, filaIni, columnafin, filafin;
         for (int i = 0; i < n_barcos; i++) {
             System.out.println("Orientación del barco (H/V):");
-            //Trycatch o switch que compruebe eso.
-
             String orientacion = in.nextLine();
-
+            
+            while(!orientacion.equals("h")||!orientacion.equals("H")||!orientacion.equals("v")||!orientacion.equals("V")){
+                System.out.println("Valor incorrecto, vuelve a intentarlo.");
+                System.out.println("Orientación del barco (H/V):");
+                orientacion = in.nextLine();
+            }
+            if(orientacion.equals("h")){
+                orientacion = "H";
+                 System.out.println(orientacion);
+            }
+            if(orientacion.equals("v")){
+               orientacion = "V";
+                System.out.println(orientacion);
+            }
             switch (orientacion) {
                 case "H":
                     System.out.println("Posición incial:");
@@ -67,6 +80,9 @@ public class consola {
                     posFinal = Tablero.columnaALetra(columnaIni) + String.valueOf(filafin);
                     break;
             }
+            
+            
+            
 
             System.out.println("Barco " + (i + 1) + ": " + posInicial + "-" + posFinal);
             System.out.println("------------------------");
