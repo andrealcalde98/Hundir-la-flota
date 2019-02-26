@@ -10,6 +10,7 @@ import modelo.Tablero;
 public class consola {
 
     static Scanner in = new Scanner(System.in);
+    static boolean sigue = true;
 
     //Recordar que a la mayoria de variables hay que sumarles +1.
     public static void llenarTablero(int[][] tablero, int n_barcos) {
@@ -82,6 +83,87 @@ public class consola {
 
             }
         }
+    }
+      public static void bloqueaAdyacentes(String posInicial, String posFinal, int[][] tablero) {
+
+        String FilaIncial = posInicial.substring(0, 1);
+        String ColumnaIncial = posInicial.substring(posInicial.indexOf(FilaIncial));
+
+        String FilaFinal = posFinal.substring(0, 1);
+        String ColumnaFinal = posFinal.substring(posFinal.indexOf(FilaFinal));
+        // variables para tratar
+        int FilaIni = Integer.parseInt(FilaIncial);
+        int ColumnaIni = Integer.parseInt(ColumnaIncial);
+
+        int FilaFin = Integer.parseInt(FilaFinal);
+        int ColumnaFin = Integer.parseInt(ColumnaFinal);
+
+        do {
+            System.out.println("No podras poner barcos en espacios adyacentes");
+
+            for (int j = 0; j < tablero.length; j++) {//columnas
+                for (int x = 0; x < tablero[j].length; x++) {//filas
+                    //posicion incial del array
+                    if (x == FilaIni - 1) {
+                        tablero[x][ColumnaIni] = 1;//valor fila inferior
+                        // si es vertical bloquearemos los bordes
+                        // no se solaparan si es horizontal ya que tambien deben estar bloqueadas
+                        tablero[x][ColumnaIni - 1] = 1;
+                        tablero[x][ColumnaIni + 1] = 1;
+
+                    } else if (x == FilaIni + 1) { // 
+                        tablero[x][ColumnaIni] = 1;//valor fila superior
+                        //si es vertical bloquearemos los dos adyacentes del valor medio
+                        tablero[x][ColumnaIni - 1] = 1;
+                        tablero[x][ColumnaIni + 1] = 1;
+
+                    } else if (j == ColumnaIni - 1) {
+                        tablero[FilaIni][j] = 1;//valor columna inferior
+                        // si es horizontal bloquearemos los bordes
+                        // no se solaparan si es vertical ya que tambien deben estar bloqueadas
+                        tablero[FilaIni - 1][j] = 1;
+                        tablero[FilaIni + 1][j] = 1;
+
+                    } else if (j == ColumnaIni + 1) {
+                        tablero[FilaIni][j] = 1;//valor columna superior
+                        //si es horizontal bloquearemos los dos adyacentes del valor medio
+                        tablero[FilaIni - 1][j] = 1;
+                        tablero[FilaIni + 1][j] = 1;
+
+                        //posicion final array
+                    } else if (x == FilaFin - 1) {
+                        tablero[x][ColumnaFin] = 1;//valor fila inferior
+                        // si es vertical bloquearemos los bordes(si es de cuatro) Si es de menos no se solapa
+                        // no se solaparan si es horizontal ya que tambien deben estar bloqueadas
+                        tablero[x][ColumnaFin - 1] = 1;
+                        tablero[x][ColumnaFin + 1] = 1;
+                        
+
+                    } else if (x == FilaFin + 1) {
+                        tablero[x][ColumnaIni] = 1;//valor fila superior
+                        // si es vertical bloquearemos los bordes
+                        // no se solaparan si es horizontal ya que tambien deben estar bloqueadas
+                        tablero[x][ColumnaFin - 1] = 1;
+                        tablero[x][ColumnaFin + 1] = 1;
+
+                    } else if (j == ColumnaFin - 1) {
+                        tablero[FilaFin][j] = 1;//valor columna inferior
+                        // si es horizontal bloquearemos los bordes
+                        // no se solaparan si es vertical ya que tambien deben estar bloqueadas
+                        tablero[FilaFin - 1][j] = 1;
+                        tablero[FilaFin+ 1][j] = 1;
+
+                    } else if (j == ColumnaFin + 1) {
+                        tablero[FilaFin][j] = 1;//valor columna superior
+                        // si es horizontal bloquearemos los bordes
+                        // no se solaparan si es vertical ya que tambien deben estar bloqueadas
+                        tablero[FilaIni - 1][j] = 1;
+                        tablero[FilaIni + 1][j] = 1;
+                    }
+
+                }
+            } sigue = false;
+        } while (sigue);
     }
 
     public static String comprobarTamano(String posInicial, String posFinal, boolean horiz,int[][] tablero) {
