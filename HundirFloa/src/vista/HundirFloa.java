@@ -10,7 +10,7 @@ import controlador.consola;
 public class HundirFloa {
 
     public static void main(String[] args) {
-        Tablero tab = new Tablero(9);
+        Tablero tab = new Tablero(12);
         tab.tableroVAcio();
         System.out.println("Tamaño del tablero de " + tab.tamanyo.length+" por "+tab.tamanyo.length);
         tab.mostrarTablero();

@@ -7,6 +7,7 @@ package modelo;
 public class Tablero {
 
     public int[][] tamanyo;
+    public Barco[] listaBarcos;
 
     public Tablero(int cuadrillas) {
         this.tamanyo = new int[cuadrillas][cuadrillas];

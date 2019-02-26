@@ -1,90 +1,123 @@
 package controlador;
 
 import java.util.Scanner;
+import modelo.Barco;
 import modelo.Tablero;
 
 /**
  *
- * @author Andre Alcalde, Lorenzo Scardino i Raúl Barrero
+ * @author Andre Alcalde, Raúl Barrero y Lorenzo Scardino.
  */
 public class consola {
 
     static Scanner in = new Scanner(System.in);
     static boolean sigue = true;
 
-    //Recordar que a la mayoria de variables hay que sumarles +1.
+    //Por poder, puedes cambiar el tamaño del tablero
+    //y el número de barcos, pero creemos que la mejor experiencia consiste en:
+    //un tablero de 12x12
+    //x1 Acorazado - 4 casillas
+    //x2 Cruceros - 3 casillas
+    //x3 Submarinos - 2 casillas
+    //x4 Desctructores - 1 casilla
+    //Recordad que a la mayoria de variables hay que sumarles +1.
     public static void llenarTablero(int[][] tablero, int n_barcos) {
 
-        String posInicial = "", posFinal;
-
-        //Pedir el tamaño del barco y la orientación.
+        //Por pura estetica, lo lento que sea el progama da igual , so..
+        //Quizas una lista con los tipos de barcos
+        String posInicial = "", posFinal = "";
+        int columnaIni, filaIni, columnafin, filafin;
         for (int i = 0; i < n_barcos; i++) {
+            System.out.println("Orientación del barco (H/V):");
+            //Trycatch o switch que compruebe eso.
 
-            System.out.println("Tamaño del barco:");
+            String orientacion = in.nextLine();
 
-            for (int z = 0; z < 2; z++) {
+            switch (orientacion) {
+                case "H":
+                    System.out.println("Posición incial:");
+                    columnaIni = posicionColumna(tablero);
+                    filaIni = posicionFila(tablero);
+                    //Aquí hay que hacer comprobaciones.
+                    //si tiene barcos adyacientes.
+                    in.nextLine();
+                    posInicial = Tablero.columnaALetra(columnaIni) + String.valueOf(filaIni);
 
-                if (z == 0) {
-                    System.out.print("Posición Inicial");
-                } else {
-                    System.out.print("Posición Final");
-                    //Si es posición final no debería pedir la columna/Fila
-                    //Dependiendo la orientación.
-                }
+                    System.out.println("Posición final:");
+                    //Aquí hay que hacer comprobaciones.
+                    //De tamaño y si tiene barcos adyacientes.
+                    columnafin = posicionColumna(tablero);
+                    posFinal = Tablero.columnaALetra(columnafin) + String.valueOf(filaIni);
+                    break;
 
-                System.out.println(" del barco " + (i + 1) + ":");
-                System.out.println("------------------------");
+                case "V":
+                    System.out.println("Posición incial:");
+                    columnaIni = posicionColumna(tablero);
+                    filaIni = posicionFila(tablero);
+                    //Aquí hay que hacer comprobaciones.
+                    //si tiene barcos adyacientes.
+                    in.nextLine();
+                    posInicial = Tablero.columnaALetra(columnaIni) + String.valueOf(filaIni);
 
-                int cambiado = -1;
-                //Comprueba si está dentro del tablero.
-                do {
-                    //Introduce columna
-                    System.out.print("Columna [");
-                    for (int j = 0; j < tablero.length; j++) {
-                        if (j == tablero.length - 1) {
-                            System.out.print(Tablero.columnaALetra(j) + "] :");
-                        } else {
-                            System.out.print(Tablero.columnaALetra(j) + ", ");
-                        }
-                    }
-                    String aCambiar = in.nextLine().toUpperCase();
-                    cambiado = Tablero.columnaAInteger(aCambiar);
-                } while (cambiado < 0 || cambiado >= tablero.length);
-
-                int fila = -1;
-
-                do {
-                    System.out.print("Fila [");
-                    for (int j = 0; j < tablero.length; j++) {
-                        if (j == tablero.length - 1) {
-                            System.out.print(j + 1 + "] :");
-                        } else {
-                            System.out.print(j + 1 + ", ");
-                        }
-                    }
-                    try {
-                        fila = in.nextInt();
-                    } catch (Exception e) {
-                        System.out.println("Eso no es un numero, broder");
-                        fila = -1;
-                        in.nextLine();
-                    }
-                } while (fila <= 0 || fila > tablero.length);
-                System.out.println("------------------------");
-                if (z == 0) {
-                    posInicial = Tablero.columnaALetra(cambiado) + String.valueOf(fila);
-                } else {
-                    posFinal = Tablero.columnaALetra(cambiado) + String.valueOf(fila);
-                    System.out.println("------------------------\n"
-                            + "Posición final: " + posInicial + "-" + posFinal
-                            + "\n------------------------\n");
-                }
-                in.nextLine();
-
+                    System.out.println("Posición final:");
+                    //Aquí hay que hacer comprobaciones.
+                    //De tamaño y si tiene barcos adyacientes.
+                    filafin = posicionFila(tablero);
+                    in.nextLine();
+                    posFinal = Tablero.columnaALetra(columnaIni) + String.valueOf(filafin);
+                    break;
             }
+
+            System.out.println("Barco " + (i + 1) + ": " + posInicial + "-" + posFinal);
+            System.out.println("------------------------");
         }
     }
-      public static void bloqueaAdyacentes(String posInicial, String posFinal, int[][] tablero) {
+
+    public static int posicionColumna(int[][] tablero) {
+        int cambiado = -1;
+        do {
+            System.out.print("Columna [");
+            for (int j = 0; j < tablero.length; j++) {
+                if (j == tablero.length - 1) {
+                    System.out.print(Tablero.columnaALetra(j) + "] :");
+                } else {
+                    System.out.print(Tablero.columnaALetra(j) + ", ");
+                }
+            }
+            String aCambiar = in.nextLine().toUpperCase();
+            cambiado = Tablero.columnaAInteger(aCambiar);
+        } while (cambiado < 0 || cambiado >= tablero.length);
+
+        return cambiado;
+    }
+
+    public static int posicionFila(int[][] tablero) {
+        int fila = -1;
+        do {
+            System.out.print("Fila [");
+            for (int j = 0; j < tablero.length; j++) {
+                if (j == tablero.length - 1) {
+                    System.out.print(j + 1 + "] :");
+                } else {
+                    System.out.print(j + 1 + ", ");
+                }
+            }
+            try {
+                fila = in.nextInt();
+            } catch (Exception e) {
+                System.out.println("Eso no es un numero, broder");
+                fila = -1;
+                in.nextLine();
+            }
+        } while (fila <= 0 || fila > tablero.length);
+
+        return fila;
+    }
+
+    //Habría que dar opciones al jugador a la hora de poner el barco, es decir,
+    //si tiene un tamaño de 3 casillas, darle sus opcines automaticamente.
+    //esto lo complicaria mucho tbh.
+    public static void bloqueaAdyacentes(String posInicial, String posFinal, int[][] tablero) {
 
         String FilaIncial = posInicial.substring(0, 1);
         String ColumnaIncial = posInicial.substring(posInicial.indexOf(FilaIncial));
@@ -137,7 +170,6 @@ public class consola {
                         // no se solaparan si es horizontal ya que tambien deben estar bloqueadas
                         tablero[x][ColumnaFin - 1] = 1;
                         tablero[x][ColumnaFin + 1] = 1;
-                        
 
                     } else if (x == FilaFin + 1) {
                         tablero[x][ColumnaIni] = 1;//valor fila superior
@@ -151,7 +183,7 @@ public class consola {
                         // si es horizontal bloquearemos los bordes
                         // no se solaparan si es vertical ya que tambien deben estar bloqueadas
                         tablero[FilaFin - 1][j] = 1;
-                        tablero[FilaFin+ 1][j] = 1;
+                        tablero[FilaFin + 1][j] = 1;
 
                     } else if (j == ColumnaFin + 1) {
                         tablero[FilaFin][j] = 1;//valor columna superior
@@ -162,13 +194,14 @@ public class consola {
                     }
 
                 }
-            } sigue = false;
+            }
+            sigue = false;
         } while (sigue);
     }
 
-    public static String comprobarTamano(String posInicial, String posFinal, boolean horiz,int[][] tablero) {
+    public static String comprobarTamano(String posInicial, String posFinal, boolean horiz, int[][] tablero) {
 
-        String FIncial = posInicial.substring(0, 1);                           
+        String FIncial = posInicial.substring(0, 1);
         String CIncial = posInicial.substring(posInicial.indexOf(FIncial));
 
         String FFinal = posFinal.substring(0, 1);
@@ -179,27 +212,24 @@ public class consola {
 
         int Ffin = Integer.parseInt(FFinal);
         int Cfin = Integer.parseInt(CFinal);
-        
-        
-        
-        
+
         if (horiz = true) {
-            
+
             for (int i = Fini; i < Ffin; i++) {
-                int pos = tablero[Cini][Fini+i];
-                if(pos !=0){
+                int pos = tablero[Cini][Fini + i];
+                if (pos != 0) {
                     return "Agua";
-                }else{
+                } else {
                     return "Acierto";
                 }
             }
         } else {
             for (int i = Cini; i < Cfin; i++) {
-                int pos = tablero[Fini][Cini+i];
-                if(pos !=0){
-                   return "Agua";
-                }else{
-                   return "Acierto";
+                int pos = tablero[Fini][Cini + i];
+                if (pos != 0) {
+                    return "Agua";
+                } else {
+                    return "Acierto";
                 }
             }
         }
