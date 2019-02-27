@@ -31,21 +31,14 @@ public class consola {
         int columnaIni, filaIni, columnafin, filafin;
         for (int i = 0; i < n_barcos; i++) {
             System.out.println("Orientación del barco (H/V):");
-            String orientacion = in.nextLine();
+            String orientacion = in.nextLine().toUpperCase();
             
-            while(!orientacion.equals("h")||!orientacion.equals("H")||!orientacion.equals("v")||!orientacion.equals("V")){
+            while(!orientacion.equals("H")&&!orientacion.equals("V")){
                 System.out.println("Valor incorrecto, vuelve a intentarlo.");
                 System.out.println("Orientación del barco (H/V):");
-                orientacion = in.nextLine();
+                orientacion = in.nextLine().toUpperCase();
             }
-            if(orientacion.equals("h")){
-                orientacion = "H";
-                 System.out.println(orientacion);
-            }
-            if(orientacion.equals("v")){
-               orientacion = "V";
-                System.out.println(orientacion);
-            }
+
             switch (orientacion) {
                 case "H":
                     System.out.println("Posición incial:");
@@ -250,26 +243,6 @@ public class consola {
             }
         }
         return "Error";
-    }
-
-    public static String setColumna(int tamMax) {
-        int cambiado = -1;
-        String aCambiar;
-        do {
-            //Introduce columna
-            System.out.print("Columna [");
-            for (int j = 0; j < tamMax; j++) {
-                if (j == tamMax - 1) {
-                    System.out.print(Tablero.columnaALetra(j) + "] :");
-                } else {
-                    System.out.print(Tablero.columnaALetra(j) + ", ");
-                }
-            }
-            aCambiar = in.nextLine().toUpperCase();
-            cambiado = Tablero.columnaAInteger(aCambiar);
-        } while (cambiado < 0 || cambiado >= tamMax);
-        System.out.println("A cambiarrrrr: " + aCambiar);
-        return aCambiar;
     }
 
 }
