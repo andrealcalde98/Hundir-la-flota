@@ -157,56 +157,56 @@ public class consola {
                         tablero[x][ColumnaIni] = 1;//valor fila inferior
                         // si es vertical bloquearemos los bordes
                         // no se solaparan si es horizontal ya que tambien deben estar bloqueadas
-                        tablero[x][ColumnaIni - 1] = 1;
-                        tablero[x][ColumnaIni + 1] = 1;
+                        tablero[x][ColumnaIni - 1] = 2;
+                        tablero[x][ColumnaIni + 1] = 2;
 
                     } else if (x == FilaIni + 1) { // 
                         tablero[x][ColumnaIni] = 1;//valor fila superior
                         //si es vertical bloquearemos los dos adyacentes del valor medio
-                        tablero[x][ColumnaIni - 1] = 1;
-                        tablero[x][ColumnaIni + 1] = 1;
+                        tablero[x][ColumnaIni - 1] = 2;
+                        tablero[x][ColumnaIni + 1] = 2;
 
                     } else if (j == ColumnaIni - 1) {
                         tablero[FilaIni][j] = 1;//valor columna inferior
                         // si es horizontal bloquearemos los bordes
                         // no se solaparan si es vertical ya que tambien deben estar bloqueadas
-                        tablero[FilaIni - 1][j] = 1;
-                        tablero[FilaIni + 1][j] = 1;
+                        tablero[FilaIni - 1][j] = 2;
+                        tablero[FilaIni + 1][j] = 2;
 
                     } else if (j == ColumnaIni + 1) {
                         tablero[FilaIni][j] = 1;//valor columna superior
                         //si es horizontal bloquearemos los dos adyacentes del valor medio
-                        tablero[FilaIni - 1][j] = 1;
-                        tablero[FilaIni + 1][j] = 1;
+                        tablero[FilaIni - 1][j] = 2;
+                        tablero[FilaIni + 1][j] = 2;
 
                         //posicion final array
                     } else if (x == FilaFin - 1) {
                         tablero[x][ColumnaFin] = 1;//valor fila inferior
                         // si es vertical bloquearemos los bordes(si es de cuatro) Si es de menos no se solapa
                         // no se solaparan si es horizontal ya que tambien deben estar bloqueadas
-                        tablero[x][ColumnaFin - 1] = 1;
-                        tablero[x][ColumnaFin + 1] = 1;
+                        tablero[x][ColumnaFin - 1] = 2;
+                        tablero[x][ColumnaFin + 1] = 2;
 
                     } else if (x == FilaFin + 1) {
                         tablero[x][ColumnaIni] = 1;//valor fila superior
                         // si es vertical bloquearemos los bordes
                         // no se solaparan si es horizontal ya que tambien deben estar bloqueadas
-                        tablero[x][ColumnaFin - 1] = 1;
-                        tablero[x][ColumnaFin + 1] = 1;
+                        tablero[x][ColumnaFin - 1] = 2;
+                        tablero[x][ColumnaFin + 1] = 2;
 
                     } else if (j == ColumnaFin - 1) {
                         tablero[FilaFin][j] = 1;//valor columna inferior
                         // si es horizontal bloquearemos los bordes
                         // no se solaparan si es vertical ya que tambien deben estar bloqueadas
-                        tablero[FilaFin - 1][j] = 1;
-                        tablero[FilaFin + 1][j] = 1;
+                        tablero[FilaFin - 1][j] = 2;
+                        tablero[FilaFin + 1][j] = 2;
 
                     } else if (j == ColumnaFin + 1) {
                         tablero[FilaFin][j] = 1;//valor columna superior
                         // si es horizontal bloquearemos los bordes
                         // no se solaparan si es vertical ya que tambien deben estar bloqueadas
-                        tablero[FilaIni - 1][j] = 1;
-                        tablero[FilaIni + 1][j] = 1;
+                        tablero[FilaIni - 1][j] = 2;
+                        tablero[FilaIni + 1][j] = 2;
                     }
 
                 }
