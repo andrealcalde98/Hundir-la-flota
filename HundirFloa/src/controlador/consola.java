@@ -32,8 +32,8 @@ public class consola {
         for (int i = 0; i < n_barcos; i++) {
             System.out.println("Orientación del barco (H/V):");
             String orientacion = in.nextLine().toUpperCase();
-            
-            while(!orientacion.equals("H")&&!orientacion.equals("V")){
+
+            while (!orientacion.equals("H") && !orientacion.equals("V")) {
                 System.out.println("Valor incorrecto, vuelve a intentarlo.");
                 System.out.println("Orientación del barco (H/V):");
                 orientacion = in.nextLine().toUpperCase();
@@ -47,13 +47,13 @@ public class consola {
                     //Aquí hay que hacer comprobaciones.
                     //si tiene barcos adyacientes.
                     in.nextLine();
-                    posInicial = Tablero.columnaALetra(columnaIni) + String.valueOf(filaIni);
+                    posInicial = Tablero.ColumnaALetra(columnaIni) + String.valueOf(filaIni);
 
                     System.out.println("Posición final:");
                     //Aquí hay que hacer comprobaciones.
                     //De tamaño y si tiene barcos adyacientes.
                     columnafin = posicionColumna(tablero);
-                    posFinal = Tablero.columnaALetra(columnafin) + String.valueOf(filaIni);
+                    posFinal = Tablero.ColumnaALetra(columnafin) + String.valueOf(filaIni);
                     break;
 
                 case "V":
@@ -63,19 +63,16 @@ public class consola {
                     //Aquí hay que hacer comprobaciones.
                     //si tiene barcos adyacientes.
                     in.nextLine();
-                    posInicial = Tablero.columnaALetra(columnaIni) + String.valueOf(filaIni);
+                    posInicial = Tablero.ColumnaALetra(columnaIni) + String.valueOf(filaIni);
 
                     System.out.println("Posición final:");
                     //Aquí hay que hacer comprobaciones.
                     //De tamaño y si tiene barcos adyacientes.
                     filafin = posicionFila(tablero);
                     in.nextLine();
-                    posFinal = Tablero.columnaALetra(columnaIni) + String.valueOf(filafin);
+                    posFinal = Tablero.ColumnaALetra(columnaIni) + String.valueOf(filafin);
                     break;
             }
-            
-            
-            
 
             System.out.println("Barco " + (i + 1) + ": " + posInicial + "-" + posFinal);
             System.out.println("------------------------");
@@ -88,13 +85,13 @@ public class consola {
             System.out.print("Columna [");
             for (int j = 0; j < tablero.length; j++) {
                 if (j == tablero.length - 1) {
-                    System.out.print(Tablero.columnaALetra(j) + "] :");
+                    System.out.print(Tablero.ColumnaALetra(j) + "] :");
                 } else {
-                    System.out.print(Tablero.columnaALetra(j) + ", ");
+                    System.out.print(Tablero.ColumnaALetra(j) + ", ");
                 }
             }
             String aCambiar = in.nextLine().toUpperCase();
-            cambiado = Tablero.columnaAInteger(aCambiar);
+            cambiado = Tablero.ColumnaAInteger(aCambiar);
         } while (cambiado < 0 || cambiado >= tablero.length);
 
         return cambiado;
@@ -121,6 +118,46 @@ public class consola {
         } while (fila <= 0 || fila > tablero.length);
 
         return fila;
+    }
+
+    //Metodo para saber si los limites del barco están al borde del tablero.
+    //Si está al inicio(Ya sea vertical o horizontal) devuelve 1.
+    //Si está al final, devuelve 2.
+    //Cualquier otro caso, devuelve un 0.
+    //(En un principio, es imposible que esté en ambos bordes a la vez)
+    //Aunque se debería añadir una comprobación por si está a la vez en el borde
+    //inicial/Final tanto horizontalmente como verticalemnte - en plan A1-A3
+    //Este método es para que no pete a la hora de recorrer el tablero - cuando
+    //comprueba que hay barcos en blqoeus adyacentes, ahorra iteraciones.
+    
+    public static int Borde(int[][] tablero, String orientacion, String posInicial, String posFinal) {
+        //Partimos los strings para poder usarlos como int. Nada nuevo.
+        //Aunque esto no debería repetirse tanto.
+        //Asumimos que todas las variables on numeros
+        String FilaIncial = posInicial.substring(0, 1);
+        String ColumnaIncial = posInicial.substring(posInicial.indexOf(FilaIncial));
+
+        String FilaFinal = posFinal.substring(0, 1);
+        String ColumnaFinal = posFinal.substring(posFinal.indexOf(FilaFinal));
+        
+        // variables para tratar
+        int FilaIni = columnaAInteger(FilaIncial);
+        int ColumnaIni = Integer.parseInt(ColumnaIncial);
+
+        int FilaFin = columnaAInteger(FilaFinal);
+        int ColumnaFin = Integer.parseInt(ColumnaFinal);
+        
+        //Int de salida
+        int borde = 0;
+        
+
+            if (ColumnaIni == 0||ColumnaFin == 0) {
+                borde = 1;
+            }else if(ColumnaIni == tablero.length ||ColumnaFin == tablero.length){
+                borde = 2;
+            }
+        
+            return 0;
     }
 
     //Habría que dar opciones al jugador a la hora de poner el barco, es decir,
@@ -245,4 +282,16 @@ public class consola {
         return "Error";
     }
 
+    
+        public static char columnaALetra(int a){
+        String letras = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+        return letras.charAt(a);
+    }
+    
+    //Letra de la columna a Numero, esto sí que afecta al codigo.
+    public static int columnaAInteger(String a){
+        String letras = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+        return letras.indexOf(a);
+        
+    }
 }

@@ -23,31 +23,37 @@ public class Tablero {
 
     public void mostrarTablero() {
         int x = 0;
+        System.out.print("   ");
+        for (int z = 0; z < tamanyo.length; z++) {
+            System.out.print("  " + ColumnaALetra(z) + "  ");
+        }
+        System.out.println("\n");
         for (int i = 0; i < tamanyo.length; i++) {
+            System.out.printf("%-3s" ,i );
             for (int j = 0; j < tamanyo.length; j++) {
                 if (tamanyo[i][j] == 0) {
-                    System.out.print(" X ");
+                    System.out.print("  X  ");
                 } else {
-                    System.out.print(" 0 ");
+                    System.out.print("  0  ");
                 }
             }
             System.out.println("");
         }
     }
-    
+
+    //Son columnas en verda
     //Las columnas sulen mostrarse como letras, esto es simplemente visual.
     //No debería afectar al codigo.
-    public static char columnaALetra(int a){
+    public static char ColumnaALetra(int a) {
         String letras = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
         return letras.charAt(a);
     }
-    
+
     //Letra de la columna a Numero, esto sí que afecta al codigo.
-    public static int columnaAInteger(String a){
+    public static int ColumnaAInteger(String a) {
         String letras = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
         return letras.indexOf(a);
-        
+
     }
-    
 
 }

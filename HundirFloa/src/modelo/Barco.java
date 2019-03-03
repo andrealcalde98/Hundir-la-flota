@@ -10,14 +10,32 @@ package modelo;
  * @author Lorenzo
  */
 public class Barco {
-    String tipo;
-    int tamanyo;
-    int vidas;
-    String[] cordenadas;
+    private String tipo;
+    private int tamanyo;
+    private int vidas;
+    private String[] cordenadas;
     
     
-    public Barco(String tipo, String ... cordenada){
+    public Barco(String tipo, int tamanyo){
         this.tipo = tipo;
-        this.cordenadas = cordenada;
+        this.tamanyo = tamanyo;
     }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public int getTamanyo() {
+        return tamanyo;
+    }
+
+    public int getVidas() {
+        return vidas;
+    }
+
+    public String[] getCordenadas() {
+        return cordenadas;
+    }
+    
+    
 }
