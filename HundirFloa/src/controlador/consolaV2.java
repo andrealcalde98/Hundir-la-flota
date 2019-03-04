@@ -16,12 +16,11 @@ import modelo.Tablero;
  */
 public class consolaV2 {
 
-    public  Jugador jugador;
-    
-  
+    public Jugador jugador;
+
     public static Scanner in = new Scanner(System.in);
 
-    public consolaV2(Jugador jugador){
+    public consolaV2(Jugador jugador) {
         this.jugador = jugador;
     }
     //Hacemos el juego de tamaño estatico
@@ -29,7 +28,6 @@ public class consolaV2 {
     //x2 Cruceros - 3 casillas
     //x3 Submarinos - 2 casillas
     //x4 Desctructores - 1 casilla
-
 
     public void anadirBarco() {
         System.out.println("Añade los barcos:");
@@ -75,7 +73,7 @@ public class consolaV2 {
                         System.out.println("Es correcto");
                         AnadirbarcoTablero(orientacion, posInicial, posFinal);
                         bloqueaAdyacentes(columnaIni, columnaFin, filaIni, filaFin);
-                        
+
                     } else {
                         System.out.println("Es incorrecto");
                     }
@@ -137,10 +135,10 @@ public class consolaV2 {
 
     public void AnadirbarcoTablero(String orientacion, String posInicial, String posFinal) {
         String ColumnaIncial = posInicial.substring(0, 1);
-        String FilaIncial = posInicial.substring(posInicial.indexOf(ColumnaIncial)+1);
+        String FilaIncial = posInicial.substring(posInicial.indexOf(ColumnaIncial) + 1);
 
         String ColumnaFinal = posFinal.substring(0, 1);
-        String FilaFinal = posFinal.substring(posFinal.indexOf(ColumnaFinal)+1);
+        String FilaFinal = posFinal.substring(posFinal.indexOf(ColumnaFinal) + 1);
 
         // variables para tratar
         int ColumnaIni = Tablero.ColumnaAInteger(ColumnaIncial);
@@ -201,8 +199,8 @@ public class consolaV2 {
 
         return fila;
     }
-    
-    public static void comprobarHit(int Cini,int Fini, int[][] tablero) {
+
+    public static void comprobarHit(int Cini, int Fini, int[][] tablero) {
 
         int pos = tablero[Cini][Fini];
         if (pos != 0) {
@@ -212,40 +210,20 @@ public class consolaV2 {
             pos = 0; // poner que aqui el 0 pase de nuevo a ser una X
         }
     }
-    
-    public  void bloqueaAdyacentes(int ColumnaIni, int ColumnaFin,int FilaIni,int FilaFin) {
-        boolean sigue = true;
-        
-        //do {
-          //  System.out.println("No podras poner barcos en espacios adyacentes");
 
-            for (int x = FilaIni; x <= FilaFin; x++) {
-                
-            
-           // for (int j = 0; j < tablero.tamanyo.length; j++) {
-             //   for (int x = 0; x < tablero.tamanyo[j].length; x++) {
-                   //Mirar que esté dentro con un while
-                   
-                                           
-                        jugador.tablero.tamanyo[x][ColumnaIni] = 1;
-                        jugador.tablero.tamanyo[x][ColumnaIni - 1] = 2;
-                        jugador.tablero.tamanyo[x][ColumnaIni + 1] = 2;
-                   /*
-                    if (x == FilaIni - 1 || x == FilaIni + 1 || j == ColumnaIni - 1 || j == ColumnaIni + 1 || x == FilaFin - 1 || x == FilaFin + 1 || j == ColumnaFin - 1 || j == ColumnaFin + 1) {
-                        
-                        tablero.tamanyo[x][ColumnaIni] = 1;
-                        tablero.tamanyo[x][ColumnaIni - 1] = 2;
-                        tablero.tamanyo[x][ColumnaIni + 1] = 2;
+    public void bloqueaAdyacentes(int ColumnaIni, int ColumnaFin, int FilaIni, int FilaFin) {
+        while(jugador.tablero.tamanyo[FilaIni - 1][ColumnaIni]>0){
+        jugador.tablero.tamanyo[FilaIni - 1][ColumnaIni] = 2;
+        jugador.tablero.tamanyo[FilaIni - 1][ColumnaIni - 1] = 2;
+        jugador.tablero.tamanyo[FilaIni - 1][ColumnaIni + 1] = 2;
+        jugador.tablero.tamanyo[FilaFin + 1][ColumnaIni] = 2;
+        jugador.tablero.tamanyo[FilaFin + 1][ColumnaIni - 1] = 2;
+        jugador.tablero.tamanyo[FilaFin + 1][ColumnaIni + 1] = 2;
+        for (int x = FilaIni; x <= FilaFin; x++) {
 
-                    } else {
-                       
-                    }
-                    
-               // }
-            }
-
-            sigue = false;
-*/                        }
-        //} while (sigue);
+            jugador.tablero.tamanyo[x][ColumnaIni] = 1;
+            jugador.tablero.tamanyo[x][ColumnaIni - 1] = 2;
+            jugador.tablero.tamanyo[x][ColumnaIni + 1] = 2;
+           }
     }
 }
