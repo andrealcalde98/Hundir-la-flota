@@ -7,6 +7,7 @@ package controlador;
 
 import java.util.Scanner;
 import modelo.Barco;
+import modelo.Jugador;
 import modelo.Tablero;
 
 /**
@@ -15,33 +16,22 @@ import modelo.Tablero;
  */
 public class consolaV2 {
 
-    public Barco[] Barcos;
+    public static Jugador jugador;
+    
+  
     public static Scanner in = new Scanner(System.in);
-    public static Tablero tablero = new Tablero(15);
 
     //Hacemos el juego de tamaño estatico
     //x1 Acorazado - 4 casillas
     //x2 Cruceros - 3 casillas
     //x3 Submarinos - 2 casillas
     //x4 Desctructores - 1 casilla
-    public consolaV2() {
-        Barcos = new Barco[]{
-            new Barco("Acorazado", 4),
-            new Barco("Crucero 1", 3),
-            new Barco("Crucero 2", 3),
-            new Barco("Submarino 1", 2),
-            new Barco("Submarino 2", 2),
-            new Barco("Submarino 3", 2),
-            new Barco("Destructor 1", 1),
-            new Barco("Destructor 2", 1),
-            new Barco("Destructor 3", 1),
-            new Barco("Destructor 4", 1),};
-    }
+
 
     public void anadirBarco() {
         System.out.println("Añade los barcos:");
 
-        for (Barco barquito : Barcos) {
+        for (Barco barquito : jugador.listaBarcos) {
             int columnaIni, filaIni, filaFin = 0, columnaFin = 0;
             String posInicial = "", posFinal = "";
 
@@ -61,8 +51,8 @@ public class consolaV2 {
             switch (orientacion) {
                 case "V":
                     System.out.println("Posición incial:");
-                    columnaIni = posicionColumna(tablero.tamanyo);
-                    filaIni = posicionFila(tablero.tamanyo);
+                    columnaIni = posicionColumna(jugador.tablero.tamanyo);
+                    filaIni = posicionFila(jugador.tablero.tamanyo);
                     //Aquí hay que hacer comprobaciones.
                     //si tiene barcos adyacientes.
 
@@ -73,7 +63,7 @@ public class consolaV2 {
                     System.out.println("Posición final:");
                     //Aquí hay que hacer comprobaciones.
                     //De tamaño y si tiene barcos adyacientes.
-                    filaFin = posicionFila(tablero.tamanyo);
+                    filaFin = posicionFila(jugador.tablero.tamanyo);
                     in.nextLine();
 
                     posFinal = Tablero.ColumnaALetra(columnaIni) + String.valueOf(filaFin);
@@ -91,8 +81,8 @@ public class consolaV2 {
 
                 case "H":
                     System.out.println("Posición incial:");
-                    columnaIni = posicionColumna(tablero.tamanyo);
-                    filaIni = posicionFila(tablero.tamanyo);
+                    columnaIni = posicionColumna(jugador.tablero.tamanyo);
+                    filaIni = posicionFila(jugador.tablero.tamanyo);
                     //Aquí hay que hacer comprobaciones.
                     //si tiene barcos adyacientes.
                     in.nextLine();
@@ -101,7 +91,7 @@ public class consolaV2 {
                     System.out.println("Posición final:");
                     //Aquí hay que hacer comprobaciones.
                     //De tamaño y si tiene barcos adyacientes.
-                    columnaFin = posicionColumna(tablero.tamanyo);
+                    columnaFin = posicionColumna(jugador.tablero.tamanyo);
 
                     posFinal = Tablero.ColumnaALetra(columnaFin) + String.valueOf(filaIni);
 
@@ -114,7 +104,7 @@ public class consolaV2 {
                     break;
             }
 
-            tablero.mostrarTablero();
+            jugador.tablero.mostrarTablero();
             System.out.println("Barco: " + posInicial + "-" + posFinal);
             System.out.println("------------------------");
         }
@@ -126,14 +116,14 @@ public class consolaV2 {
 
         if (orientacion.equals("H")) {
             for (int i = colInicial; i < colFinal; i++) {
-                if (tablero.tamanyo[filInicial][i] != 0) {
+                if (jugador.tablero.tamanyo[filInicial][i] != 0) {
                     System.out.println("Posición invalida.");
                     correcto = false;
                 }
             }
         } else {
             for (int i = filInicial; i < filFinal; i++) {
-                if (tablero.tamanyo[i][colInicial] != 0) {
+                if (jugador.tablero.tamanyo[i][colInicial] != 0) {
                     System.out.println("Posición invalida.");
                     correcto = false;
                 }
@@ -158,11 +148,11 @@ public class consolaV2 {
 
         if (orientacion.equals("H")) {
             for (int i = ColumnaIni; i <= ColumnaFin; i++) {
-                tablero.tamanyo[FilaIni][i] = 1;
+                jugador.tablero.tamanyo[FilaIni][i] = 1;
             }
         } else {
             for (int i = FilaIni; i <= FilaFin; i++) {
-                tablero.tamanyo[i][ColumnaIni] = 1;
+                jugador.tablero.tamanyo[i][ColumnaIni] = 1;
             }
         }
     }
@@ -234,9 +224,9 @@ public class consolaV2 {
                    //Mirar que esté dentro con un while
                    
                                            
-                        tablero.tamanyo[x][ColumnaIni] = 1;
-                        tablero.tamanyo[x][ColumnaIni - 1] = 2;
-                        tablero.tamanyo[x][ColumnaIni + 1] = 2;
+                        jugador.tablero.tamanyo[x][ColumnaIni] = 1;
+                        jugador.tablero.tamanyo[x][ColumnaIni - 1] = 2;
+                        jugador.tablero.tamanyo[x][ColumnaIni + 1] = 2;
                    /*
                     if (x == FilaIni - 1 || x == FilaIni + 1 || j == ColumnaIni - 1 || j == ColumnaIni + 1 || x == FilaFin - 1 || x == FilaFin + 1 || j == ColumnaFin - 1 || j == ColumnaFin + 1) {
                         

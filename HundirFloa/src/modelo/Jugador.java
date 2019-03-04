@@ -12,11 +12,12 @@ import java.util.Map;
  * @author Lorenzo
  */
 public class Jugador {
-    String id;
-    Barco[] listaBarcos;
-    Tablero tablero;
-    Tablero enemigo;
-    Map<String, Boolean> tiradas;
+    public String id;
+    public  Barco[] listaBarcos;
+    public Tablero tablero;
+    public Tablero enemigo;
+    public Map<String, Boolean> tiradas;
+    public int vidas;
     
     public Jugador(String id, Barco[] listaBarcos, Tablero tablero, Tablero enemigo){
         this.id = id;
@@ -24,4 +25,9 @@ public class Jugador {
         this.tablero = tablero;
         this.enemigo = enemigo;        
     }
+    
+    
+    
+    
+    
 }
