@@ -129,7 +129,6 @@ public class consola {
     //inicial/Final tanto horizontalmente como verticalemnte - en plan A1-A3
     //Este método es para que no pete a la hora de recorrer el tablero - cuando
     //comprueba que hay barcos en blqoeus adyacentes, ahorra iteraciones.
-    
     public static int Borde(int[][] tablero, String orientacion, String posInicial, String posFinal) {
         //Partimos los strings para poder usarlos como int. Nada nuevo.
         //Aunque esto no debería repetirse tanto.
@@ -139,25 +138,24 @@ public class consola {
 
         String FilaFinal = posFinal.substring(0, 1);
         String ColumnaFinal = posFinal.substring(posFinal.indexOf(FilaFinal));
-        
+
         // variables para tratar
         int FilaIni = columnaAInteger(FilaIncial);
         int ColumnaIni = Integer.parseInt(ColumnaIncial);
 
         int FilaFin = columnaAInteger(FilaFinal);
         int ColumnaFin = Integer.parseInt(ColumnaFinal);
-        
+
         //Int de salida
         int borde = 0;
-        
 
-            if (ColumnaIni == 0||ColumnaFin == 0) {
-                borde = 1;
-            }else if(ColumnaIni == tablero.length ||ColumnaFin == tablero.length){
-                borde = 2;
-            }
-        
-            return 0;
+        if (ColumnaIni == 0 || ColumnaFin == 0) {
+            borde = 1;
+        } else if (ColumnaIni == tablero.length || ColumnaFin == tablero.length) {
+            borde = 2;
+        }
+
+        return 0;
     }
 
     //Habría que dar opciones al jugador a la hora de poner el barco, es decir,
@@ -282,16 +280,15 @@ public class consola {
         return "Error";
     }
 
-    
-        public static char columnaALetra(int a){
+    public static char columnaALetra(int a) {
         String letras = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
         return letras.charAt(a);
     }
-    
+
     //Letra de la columna a Numero, esto sí que afecta al codigo.
-    public static int columnaAInteger(String a){
+    public static int columnaAInteger(String a) {
         String letras = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
         return letras.indexOf(a);
-        
+
     }
 }

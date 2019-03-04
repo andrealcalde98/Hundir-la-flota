@@ -210,4 +210,20 @@ public class consolaV2 {
 
         return fila;
     }
+    
+    public static String comprobarHit(String posicion, int[][] tablero) {
+
+        String FIncial = posicion.substring(0, 1);
+        String CIncial = posicion.substring(posicion.indexOf(FIncial));
+
+        int Fini = Integer.parseInt(FIncial);
+        int Cini = Integer.parseInt(CIncial);
+ 
+        int pos = tablero[Cini][Fini];
+        if (pos != 0) {
+            return "Agua";
+        } else {
+            return "Acierto";
+        }
+    }
 }
