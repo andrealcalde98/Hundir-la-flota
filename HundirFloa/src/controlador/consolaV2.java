@@ -16,11 +16,14 @@ import modelo.Tablero;
  */
 public class consolaV2 {
 
-    public static Jugador jugador;
+    public  Jugador jugador;
     
   
     public static Scanner in = new Scanner(System.in);
 
+    public consolaV2(Jugador jugador){
+        this.jugador = jugador;
+    }
     //Hacemos el juego de tamaño estatico
     //x1 Acorazado - 4 casillas
     //x2 Cruceros - 3 casillas
@@ -210,7 +213,7 @@ public class consolaV2 {
         }
     }
     
-    public static void bloqueaAdyacentes(int ColumnaIni, int ColumnaFin,int FilaIni,int FilaFin) {
+    public  void bloqueaAdyacentes(int ColumnaIni, int ColumnaFin,int FilaIni,int FilaFin) {
         boolean sigue = true;
         
         //do {

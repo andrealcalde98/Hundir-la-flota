@@ -21,21 +21,6 @@ public class Barco {
         this.tamanyo = tamanyo;
     }
 
-    public Barco[] IniciarBarcos() {
-        Barco[] Barcos = new Barco[]{
-            new Barco("Acorazado", 4),
-            new Barco("Crucero 1", 3),
-            new Barco("Crucero 2", 3),
-            new Barco("Submarino 1", 2),
-            new Barco("Submarino 2", 2),
-            new Barco("Submarino 3", 2),
-            new Barco("Destructor 1", 1),
-            new Barco("Destructor 2", 1),
-            new Barco("Destructor 3", 1),
-            new Barco("Destructor 4", 1),};
-        return Barcos;
-    }
-
     public String getTipo() {
         return tipo;
     }
