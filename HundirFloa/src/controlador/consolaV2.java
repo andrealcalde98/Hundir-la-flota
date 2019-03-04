@@ -211,19 +211,39 @@ public class consolaV2 {
         return fila;
     }
     
-    public static String comprobarHit(String posicion, int[][] tablero) {
+    public static void comprobarHit(int Cini,int Fini, int[][] tablero) {
 
-        String FIncial = posicion.substring(0, 1);
-        String CIncial = posicion.substring(posicion.indexOf(FIncial));
-
-        int Fini = Integer.parseInt(FIncial);
-        int Cini = Integer.parseInt(CIncial);
- 
         int pos = tablero[Cini][Fini];
         if (pos != 0) {
-            return "Agua";
+            System.out.println("Agua");
         } else {
-            return "Acierto";
+            System.out.println("Tocado");
+            pos = 0; // poner que aqui el 0 pase de nuevo a ser una X
         }
+    }
+    
+    public static void bloqueaAdyacentes(int ColumnaIni, int ColumnaFin,int FilaIni,int FilaFin, int[][] tablero) {
+        boolean sigue = true;
+        
+        do {
+            System.out.println("No podras poner barcos en espacios adyacentes");
+
+            for (int j = 0; j < tablero.length; j++) {
+                for (int x = 0; x < tablero[j].length; x++) {
+                   
+                    if (x == FilaIni - 1 || x == FilaIni + 1 || j == ColumnaIni - 1 || j == ColumnaIni + 1 || x == FilaFin - 1 || x == FilaFin + 1 || j == ColumnaFin - 1 || j == ColumnaFin + 1) {
+                        
+                        tablero[x][ColumnaIni] = 1;
+                        tablero[x][ColumnaIni - 1] = 2;
+                        tablero[x][ColumnaIni + 1] = 2;
+
+                    } else {
+                       
+                    }
+
+                }
+            }
+            sigue = false;
+        } while (sigue);
     }
 }

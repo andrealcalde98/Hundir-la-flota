@@ -33,9 +33,8 @@ public class HundirFloa {
         */
         consolaV2 a = new consolaV2();
         a.anadirBarco();
-        System.out.println("Introduce posicion a descubrir");
-        String posicion = in.next();
-        System.out.println(a.comprobarHit(posicion,tab.tamanyo));
+      //System.out.println("Introduce posicion a descubrir");
+      //String posicion = in.next();
          
     }
 
