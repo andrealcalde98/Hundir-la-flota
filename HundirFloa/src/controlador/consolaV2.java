@@ -212,18 +212,27 @@ public class consolaV2 {
     }
 
     public void bloqueaAdyacentes(int ColumnaIni, int ColumnaFin, int FilaIni, int FilaFin) {
-        if(jugador.tablero.tamanyo[FilaIni - 1][ColumnaIni]>=0){jugador.tablero.tamanyo[FilaIni - 1][ColumnaIni] = 2;};
-        if(jugador.tablero.tamanyo[FilaIni - 1][ColumnaIni - 1]>=0){jugador.tablero.tamanyo[FilaIni - 1][ColumnaIni - 1] = 2;};
-        if(jugador.tablero.tamanyo[FilaIni - 1][ColumnaIni + 1]>=0){jugador.tablero.tamanyo[FilaIni - 1][ColumnaIni + 1] = 2;};
-        if(jugador.tablero.tamanyo[FilaFin + 1][ColumnaIni]>=0){jugador.tablero.tamanyo[FilaFin + 1][ColumnaIni] = 2;};
-        if(jugador.tablero.tamanyo[FilaFin + 1][ColumnaIni - 1]>=0){jugador.tablero.tamanyo[FilaFin + 1][ColumnaIni - 1] = 2;};
-        if(jugador.tablero.tamanyo[FilaFin + 1][ColumnaIni + 1]>=0){jugador.tablero.tamanyo[FilaFin + 1][ColumnaIni + 1] = 2;};
-        
+        if (FilaIni - 1 > 0) {
+            jugador.tablero.tamanyo[FilaIni - 1][ColumnaIni] = 2;
+        }
+        if (FilaIni - 1 > 0 && ColumnaIni - 1 > 0) {
+            jugador.tablero.tamanyo[FilaIni - 1][ColumnaIni - 1] = 2;
+        }
+        if (FilaIni - 1 > 0 && ColumnaIni + 1 > 0) {
+            jugador.tablero.tamanyo[FilaIni - 1][ColumnaIni + 1] = 2;
+        }
+        if (FilaFin + 1 < 15) {
+            jugador.tablero.tamanyo[FilaFin + 1][ColumnaFin] = 2;
+        }
         for (int x = FilaIni; x <= FilaFin; x++) {
-            if(jugador.tablero.tamanyo[x][ColumnaIni]>=0){jugador.tablero.tamanyo[x][ColumnaIni] = 1;};
-            if(jugador.tablero.tamanyo[x][ColumnaIni - 1]>=0){jugador.tablero.tamanyo[x][ColumnaIni - 1] = 2;};
-            if(jugador.tablero.tamanyo[x][ColumnaIni + 1]>=0){jugador.tablero.tamanyo[x][ColumnaIni + 1] = 2;};
-           }
+            jugador.tablero.tamanyo[x][ColumnaIni] = 1;
+            if (ColumnaIni - 1 > 0) {
+                jugador.tablero.tamanyo[x][ColumnaIni - 1] = 2;
+            }
+            if (ColumnaIni + 1 > 0) {
+                jugador.tablero.tamanyo[x][ColumnaIni + 1] = 2;
+            }
+        }
     }
-    
+
 }
