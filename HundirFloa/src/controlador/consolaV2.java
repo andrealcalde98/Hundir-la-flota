@@ -17,7 +17,7 @@ public class consolaV2 {
 
     public Barco[] Barcos;
     public static Scanner in = new Scanner(System.in);
-    public Tablero tablero = new Tablero(15);
+    public static Tablero tablero = new Tablero(15);
 
     //Hacemos el juego de tamaño estatico
     //x1 Acorazado - 4 casillas
@@ -68,10 +68,6 @@ public class consolaV2 {
 
                     in.nextLine();
 
-                    //probar
-                    System.out.println("Columna ini = " + columnaIni);
-                    System.out.println("Fila ini = " + filaIni);
-
                     posInicial = Tablero.ColumnaALetra(columnaIni) + String.valueOf(filaIni);
 
                     System.out.println("Posición final:");
@@ -85,6 +81,8 @@ public class consolaV2 {
                     if (posValida(orientacion, columnaFin, columnaFin, filaIni, filaFin)) {
                         System.out.println("Es correcto");
                         AnadirbarcoTablero(orientacion, posInicial, posFinal);
+                        bloqueaAdyacentes(columnaIni, columnaFin, filaIni, filaFin);
+                        
                     } else {
                         System.out.println("Es incorrecto");
                     }
@@ -222,28 +220,39 @@ public class consolaV2 {
         }
     }
     
-    public static void bloqueaAdyacentes(int ColumnaIni, int ColumnaFin,int FilaIni,int FilaFin, int[][] tablero) {
+    public static void bloqueaAdyacentes(int ColumnaIni, int ColumnaFin,int FilaIni,int FilaFin) {
         boolean sigue = true;
         
-        do {
-            System.out.println("No podras poner barcos en espacios adyacentes");
+        //do {
+          //  System.out.println("No podras poner barcos en espacios adyacentes");
 
-            for (int j = 0; j < tablero.length; j++) {
-                for (int x = 0; x < tablero[j].length; x++) {
+            for (int x = FilaIni; x <= FilaFin; x++) {
+                
+            
+           // for (int j = 0; j < tablero.tamanyo.length; j++) {
+             //   for (int x = 0; x < tablero.tamanyo[j].length; x++) {
+                   //Mirar que esté dentro con un while
                    
+                                           
+                        tablero.tamanyo[x][ColumnaIni] = 1;
+                        tablero.tamanyo[x][ColumnaIni - 1] = 2;
+                        tablero.tamanyo[x][ColumnaIni + 1] = 2;
+                   /*
                     if (x == FilaIni - 1 || x == FilaIni + 1 || j == ColumnaIni - 1 || j == ColumnaIni + 1 || x == FilaFin - 1 || x == FilaFin + 1 || j == ColumnaFin - 1 || j == ColumnaFin + 1) {
                         
-                        tablero[x][ColumnaIni] = 1;
-                        tablero[x][ColumnaIni - 1] = 2;
-                        tablero[x][ColumnaIni + 1] = 2;
+                        tablero.tamanyo[x][ColumnaIni] = 1;
+                        tablero.tamanyo[x][ColumnaIni - 1] = 2;
+                        tablero.tamanyo[x][ColumnaIni + 1] = 2;
 
                     } else {
                        
                     }
-
-                }
+                    
+               // }
             }
+
             sigue = false;
-        } while (sigue);
+*/                        }
+        //} while (sigue);
     }
 }

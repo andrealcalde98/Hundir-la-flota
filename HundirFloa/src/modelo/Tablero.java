@@ -29,21 +29,25 @@ public class Tablero {
         }
         System.out.println("\n");
         for (int i = 0; i < tamanyo.length; i++) {
-            System.out.printf("%-3s" ,i );
+            System.out.printf("%-3s", i);
             for (int j = 0; j < tamanyo.length; j++) {
                 if (tamanyo[i][j] == 0) {
                     System.out.print("  X  ");
-                } else {
+
+                } else if (tamanyo[i][j] == 1) {
                     System.out.print("  0  ");
+
+                } else {
+                    System.out.print("  A  ");
                 }
             }
             System.out.println("");
         }
     }
 
-    //Son columnas en verda
-    //Las columnas sulen mostrarse como letras, esto es simplemente visual.
-    //No debería afectar al codigo.
+//Son columnas en verda
+//Las columnas sulen mostrarse como letras, esto es simplemente visual.
+//No debería afectar al codigo.
     public static char ColumnaALetra(int a) {
         String letras = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
         return letras.charAt(a);
