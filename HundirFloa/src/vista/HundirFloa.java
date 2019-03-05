@@ -20,9 +20,18 @@ public class HundirFloa {
         Tablero tabJug1 = new Tablero(15);
         Tablero tabJug2 = new Tablero(15);
         
-        Jugador j1 = new Jugador("Jugador 1", tabJug2, tabJug2);
+        Jugador j1 = new Jugador("Jugador 1", tabJug1, tabJug2);
+        Jugador j2 = new Jugador("Jugador 2", tabJug2, tabJug1);
         
         tabJug1.tableroVAcio();
+        tabJug2.tableroVAcio();
+        
+        consolaV2 con1 = new consolaV2(j1);
+        consolaV2 con2 = new consolaV2(j2);  
+        
+        con1.anadirBarco();
+        con2.anadirBarco();
+        
         System.out.println("Tamaño del tablero de " + tabJug1.tamanyo.length + " por " + tabJug1.tamanyo.length);
         /*tab.mostrarTablero();
 
@@ -38,8 +47,8 @@ public class HundirFloa {
         tab.mostrarTablero();
 
          */
-        consolaV2 a = new consolaV2(j1);
-        a.anadirBarco();
+
+
         //System.out.println("Introduce posicion a descubrir");
         //String posicion = in.next();
 

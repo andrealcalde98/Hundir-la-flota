@@ -72,7 +72,7 @@ public class consolaV2 {
                     if (posValida(orientacion, columnaFin, columnaFin, filaIni, filaFin)) {
                         System.out.println("Es correcto");
                         AnadirbarcoTablero(orientacion, posInicial, posFinal);
-                        bloqueaAdyacentes(columnaIni, columnaFin, filaIni, filaFin);
+                        bloqueaAdyacentes("V",columnaIni, columnaFin, filaIni, filaFin);
 
                     } else {
                         System.out.println("Es incorrecto");
@@ -211,7 +211,42 @@ public class consolaV2 {
         }
     }
 
-    public void bloqueaAdyacentes(int ColumnaIni, int ColumnaFin, int FilaIni, int FilaFin) {
+    public void bloqueaAdyacentes(String orientacion, int ColumnaIni, int ColumnaFin, int FilaIni, int FilaFin) {
+
+        if (orientacion.equals("V")) {
+
+            //Comprueba que no se salga por el lado izquierdo - tmb sirve un if
+            if (ColumnaIni - 1 >= 0) {
+                for (int x = FilaIni; x <= FilaFin; x++) {
+                    jugador.tablero.tamanyo[x][ColumnaIni - 1] = 2;
+                }
+            }
+            //Comprueba que no se salga por el lado derecho
+            if (ColumnaIni + 1 <= jugador.tablero.tamanyo.length) {
+                for (int x = FilaIni; x <= FilaFin; x++) {
+                    jugador.tablero.tamanyo[x][ColumnaIni + 1] = 2;
+                }
+            }
+            //Comprueba la casilla justo arriba
+            if (FilaIni - 1 > 0 && FilaFin - 1 > 0) {
+                //Puedes poner los barcos hacia arriba o hacia abajo
+                if (FilaIni <= FilaFin) {
+                    jugador.tablero.tamanyo[FilaIni - 1][ColumnaIni] = 2;
+                    //Arriba a la izqierda
+                    if (ColumnaIni - 1 >= 0) {
+                        jugador.tablero.tamanyo[FilaIni - 1][ColumnaIni - 1] = 2;
+                    }
+                    //TODO Arriba a la derecha
+                } else {
+                    jugador.tablero.tamanyo[FilaFin - 1][ColumnaFin] = 2;
+                }
+
+            }
+            //TODO hacia abajo
+            //TODO orientacion horizontal
+        }
+
+        /*
         if (FilaIni - 1 > 0) {
             jugador.tablero.tamanyo[FilaIni - 1][ColumnaIni] = 2;
         }
@@ -233,6 +268,7 @@ public class consolaV2 {
                 jugador.tablero.tamanyo[x][ColumnaIni + 1] = 2;
             }
         }
+        */
     }
 
 }
