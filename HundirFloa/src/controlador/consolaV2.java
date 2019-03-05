@@ -72,7 +72,7 @@ public class consolaV2 {
                     if (posValida(orientacion, columnaFin, columnaFin, filaIni, filaFin)) {
                         System.out.println("Es correcto");
                         AnadirbarcoTablero(orientacion, posInicial, posFinal);
-                        bloqueaAdyacentes("V",columnaIni, columnaFin, filaIni, filaFin);
+                        bloqueaAdyacentes("V", columnaIni, columnaFin, filaIni, filaFin);
 
                     } else {
                         System.out.println("Es incorrecto");
@@ -99,6 +99,7 @@ public class consolaV2 {
                     if (posValida(orientacion, columnaFin, columnaFin, filaIni, filaFin)) {
                         System.out.println("Es correcto");
                         AnadirbarcoTablero(orientacion, posInicial, posFinal);
+                        bloqueaAdyacentes("H", columnaIni, columnaFin, filaIni, filaFin);
                     } else {
                         System.out.println("Es incorrecto");
                     }
@@ -262,25 +263,25 @@ public class consolaV2 {
                 }
 
             }
-        }else{
+        } else {
             //orientacion horizontal
             //Comprueba que no se salga por el lado izquierdo - tmb sirve un if
             if (FilaIni - 1 >= 0) {
                 for (int x = ColumnaIni; x <= ColumnaFin; x++) {
-                    jugador.tablero.tamanyo[x][FilaIni - 1] = 2;
+                    jugador.tablero.tamanyo[FilaIni - 1][x] = 2;
                 }
             }
             //Comprueba que no se salga por el lado derecho
             if (FilaIni + 1 <= jugador.tablero.tamanyo.length) {
                 for (int x = ColumnaIni; x <= ColumnaFin; x++) {
-                    jugador.tablero.tamanyo[x][FilaIni + 1] = 2;
+                    jugador.tablero.tamanyo[FilaIni + 1][x] = 2;
                 }
             }
             //Comprueba la casilla justo derecha
             if (ColumnaIni - 1 > 0 && ColumnaFin - 1 > 0) {
                 //Puedes poner los barcos hacia arriba o hacia abajo
                 if (ColumnaIni <= ColumnaFin) {
-                    jugador.tablero.tamanyo[FilaIni][ColumnaIni-1] = 2;
+                    jugador.tablero.tamanyo[FilaIni][ColumnaIni - 1] = 2;
                     //Arriba a la izqierda
                     if (FilaIni - 1 >= 0) {
                         jugador.tablero.tamanyo[FilaIni - 1][ColumnaIni - 1] = 2;
@@ -290,30 +291,28 @@ public class consolaV2 {
                         jugador.tablero.tamanyo[FilaIni + 1][ColumnaIni - 1] = 2;
                     }
                 } else {
-                    jugador.tablero.tamanyo[FilaFin][ColumnaFin-1] = 2;
+                    jugador.tablero.tamanyo[FilaFin][ColumnaFin - 1] = 2;
                 }
             }
             //Comprueba la casilla justo izquierda
             if (ColumnaIni + 1 > 0 && ColumnaFin + 1 > 0) {
                 //Puedes poner los barcos hacia arriba o hacia abajo
                 if (ColumnaIni <= ColumnaFin) {
-                    jugador.tablero.tamanyo[FilaFin ][ColumnaIni+1] = 2;
-                    //Abajo a la izqierda
+                    jugador.tablero.tamanyo[FilaIni][ColumnaFin + 1] = 2;
+                    //Arriba a la izqierda
                     if (FilaIni - 1 >= 0) {
-                        jugador.tablero.tamanyo[FilaFin - 1][ColumnaIni + 1] = 2;
+                        jugador.tablero.tamanyo[FilaIni - 1][ColumnaFin + 1] = 2;
                     }
-                    //Abajo a la derecha
+                    //Arriba a la derecha
                     if (FilaIni + 1 >= 0) {
-                        jugador.tablero.tamanyo[FilaFin + 1][ColumnaIni + 1] = 2;
+                        jugador.tablero.tamanyo[FilaIni + 1][ColumnaFin + 1] = 2;
                     }
                 } else {
-                    jugador.tablero.tamanyo[FilaFin][ColumnaFin+1] = 2;
+                    jugador.tablero.tamanyo[FilaFin][ColumnaFin + 1] = 2;
                 }
-
             }
         }
 
-        
     }
 
 }
