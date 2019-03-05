@@ -173,7 +173,7 @@ public class consolaV2 {
             String aCambiar = in.nextLine().toUpperCase();
             cambiado = Tablero.ColumnaAInteger(aCambiar);
             //no pilla la Ñ - la ultima letra
-        } while (cambiado < 0 || cambiado >= tablero.length + 1);
+        } while (cambiado < 0 || cambiado >= tablero.length);
 
         return cambiado;
     }
@@ -229,7 +229,7 @@ public class consolaV2 {
                 }
             }
             //Comprueba la casilla justo arriba
-            if (FilaIni - 1 > 0 && FilaFin - 1 > 0) {
+            if (FilaIni - 1 >= 0 && FilaFin - 1 >= 0) {
                 //Puedes poner los barcos hacia arriba o hacia abajo
                 if (FilaIni <= FilaFin) {
                     jugador.tablero.tamanyo[FilaIni - 1][ColumnaIni] = 2;
@@ -246,7 +246,7 @@ public class consolaV2 {
                 }
             }
             //Comprueba la casilla justo abajo
-            if (FilaIni + 1 > 0 && FilaFin + 1 > 0) {
+            if (FilaIni + 1 >= 0 && FilaFin + 1 >= 0) {
                 //Puedes poner los barcos hacia arriba o hacia abajo
                 if (FilaIni <= FilaFin) {
                     jugador.tablero.tamanyo[FilaFin + 1][ColumnaIni] = 2;
@@ -278,7 +278,7 @@ public class consolaV2 {
                 }
             }
             //Comprueba la casilla justo derecha
-            if (ColumnaIni - 1 > 0 && ColumnaFin - 1 > 0) {
+            if (ColumnaIni - 1 >= 0 && ColumnaFin - 1 >= 0) {
                 //Puedes poner los barcos hacia arriba o hacia abajo
                 if (ColumnaIni <= ColumnaFin) {
                     jugador.tablero.tamanyo[FilaIni][ColumnaIni - 1] = 2;
@@ -295,7 +295,7 @@ public class consolaV2 {
                 }
             }
             //Comprueba la casilla justo izquierda
-            if (ColumnaIni + 1 > 0 && ColumnaFin + 1 > 0) {
+            if (ColumnaIni + 1 >= 0 && ColumnaFin + 1 >= 0) {
                 //Puedes poner los barcos hacia arriba o hacia abajo
                 if (ColumnaIni <= ColumnaFin) {
                     jugador.tablero.tamanyo[FilaIni][ColumnaFin + 1] = 2;
