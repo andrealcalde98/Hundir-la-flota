@@ -17,7 +17,7 @@ public class HundirFloa {
 
     public static void main(String[] args) {
 
-        Tablero tabJug1 = new Tablero(15);
+        Tablero tabJug1 = new Tablero(16);
         Tablero tabJug2 = new Tablero(15);
         
         Jugador j1 = new Jugador("Jugador 1", tabJug1, tabJug2);
@@ -28,6 +28,13 @@ public class HundirFloa {
         
         consolaV2 con1 = new consolaV2(j1);
         consolaV2 con2 = new consolaV2(j2);  
+        
+        
+        System.out.println("///////////////");
+        System.out.println(j1.tablero.tamanyo.length);
+        System.out.println(Tablero.ColumnaAInteger("A"));
+        //System.out.println(j1.tablero.ColumnaALetra(12));
+                System.out.println("///////////////");
         
         con1.anadirBarco();
         con2.anadirBarco();

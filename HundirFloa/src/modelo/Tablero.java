@@ -49,13 +49,13 @@ public class Tablero {
 //Las columnas sulen mostrarse como letras, esto es simplemente visual.
 //No debería afectar al codigo.
     public static char ColumnaALetra(int a) {
-        String letras = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+        String letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         return letras.charAt(a);
     }
 
     //Letra de la columna a Numero, esto sí que afecta al codigo.
     public static int ColumnaAInteger(String a) {
-        String letras = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+        String letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         return letras.indexOf(a);
 
     }
