@@ -5,6 +5,7 @@
  */
 package controlador;
 
+
 import java.util.Scanner;
 import modelo.Barco;
 import modelo.Jugador;
@@ -14,13 +15,13 @@ import modelo.Tablero;
  *
  * @author Lorenzo
  */
-public class ConsolaV2 {
+public class ConsolaV3 {
 
     public Jugador jugador;
 
     public static Scanner in = new Scanner(System.in);
 
-    public ConsolaV2(Jugador jugador) {
+    public ConsolaV3(Jugador jugador) {
         this.jugador = jugador;
     }
     //Hacemos el juego de tamaño estatico
@@ -37,6 +38,7 @@ public class ConsolaV2 {
             //Also, un metodo para mirar eso.
             int columnaIni, filaIni, filaFin = 0, columnaFin = 0;
             String posInicial = "", posFinal = "";
+            boolean correcto = false;
 
             System.out.println(barquito.getTipo() + " tamaño de "
                     + barquito.getTamanyo() + " casillas.");
@@ -52,58 +54,79 @@ public class ConsolaV2 {
 
             switch (orientacion) {
                 case "V":
-                    System.out.println("Posición incial:");
-                    columnaIni = posicionColumna(jugador.tablero.tamanyo);
-                    filaIni = posicionFila(jugador.tablero.tamanyo);
-                    //Aquí hay que hacer comprobaciones.
-                    //si tiene barcos adyacientes.
+                    do {
+                        jugador.tablero.mostrarTablero();
+                        System.out.println("Posición incial:");
+                        columnaIni = posicionColumna(jugador.tablero.tamanyo);
+                        filaIni = posicionFila(jugador.tablero.tamanyo);
+                        //Aquí hay que hacer comprobaciones.
+                        //si tiene barcos adyacientes.
 
-                    in.nextLine();
+                        in.nextLine();
 
-                    posInicial = Tablero.ColumnaALetra(columnaIni) + String.valueOf(filaIni);
+                        posInicial = Tablero.ColumnaALetra(columnaIni) + String.valueOf(filaIni);
 
-                    System.out.println("Posición final:");
-                    //Aquí hay que hacer comprobaciones.
-                    //De tamaño y si tiene barcos adyacientes.
-                    filaFin = posicionFila(jugador.tablero.tamanyo);
-                    in.nextLine();
+                        System.out.println("Posición final:");
+                        //Aquí hay que hacer comprobaciones.
+                        //De tamaño y si tiene barcos adyacientes.
+                        filaFin = posicionFila(jugador.tablero.tamanyo);
+                        in.nextLine();
 
-                    posFinal = Tablero.ColumnaALetra(columnaIni) + String.valueOf(filaFin);
+                        posFinal = Tablero.ColumnaALetra(columnaIni) + String.valueOf(filaFin);
 
-                    if (posValida(orientacion, columnaFin, columnaFin, filaIni, filaFin)) {
-                        System.out.println("Es correcto");
-                        AnadirbarcoTablero(orientacion, posInicial, posFinal);
-                        bloqueaAdyacentes("V", columnaIni, columnaFin, filaIni, filaFin);
+                        correcto = devolverDimension(barquito, posInicial, posFinal, orientacion);
+                        if (correcto) {
 
-                    } else {
-                        System.out.println("Es incorrecto");
-                    }
+                            if (posValida(orientacion, columnaIni, columnaFin, filaIni, filaFin)) {
+                                System.out.println("Es correcto");
+                                AnadirbarcoTablero(orientacion, posInicial, posFinal);
+                                bloqueaAdyacentes("V", columnaIni, columnaFin, filaIni, filaFin);
+
+                            } else {
+                                System.out.println("Es incorrecto");
+                            }
+                        } else {
+                            System.out.println("Dimensión del barco erronea - "
+                                    + "Dimensión Esperada: " + barquito.getTamanyo());
+                        }
+                    } while (!correcto);
 
                     break;
 
                 case "H":
-                    System.out.println("Posición incial:");
-                    columnaIni = posicionColumna(jugador.tablero.tamanyo);
-                    filaIni = posicionFila(jugador.tablero.tamanyo);
-                    //Aquí hay que hacer comprobaciones.
-                    //si tiene barcos adyacientes.
-                    in.nextLine();
-                    posInicial = Tablero.ColumnaALetra(columnaIni) + String.valueOf(filaIni);
+                    do {
+                        jugador.tablero.mostrarTablero();
+                        System.out.println("Posición incial:");
+                        columnaIni = posicionColumna(jugador.tablero.tamanyo);
+                        filaIni = posicionFila(jugador.tablero.tamanyo);
+                        //Aquí hay que hacer comprobaciones.
+                        //si tiene barcos adyacientes.
+                        in.nextLine();
+                        posInicial = Tablero.ColumnaALetra(columnaIni) + String.valueOf(filaIni);
 
-                    System.out.println("Posición final:");
-                    //Aquí hay que hacer comprobaciones.
-                    //De tamaño y si tiene barcos adyacientes.
-                    columnaFin = posicionColumna(jugador.tablero.tamanyo);
+                        System.out.println("Posición final:");
+                        //Aquí hay que hacer comprobaciones.
+                        //De tamaño y si tiene barcos adyacientes.
+                        columnaFin = posicionColumna(jugador.tablero.tamanyo);
 
-                    posFinal = Tablero.ColumnaALetra(columnaFin) + String.valueOf(filaIni);
+                        posFinal = Tablero.ColumnaALetra(columnaFin) + String.valueOf(filaIni);
 
-                    if (posValida(orientacion, columnaFin, columnaFin, filaIni, filaFin)) {
-                        System.out.println("Es correcto");
-                        AnadirbarcoTablero(orientacion, posInicial, posFinal);
-                        bloqueaAdyacentes("H", columnaIni, columnaFin, filaIni, filaFin);
-                    } else {
-                        System.out.println("Es incorrecto");
-                    }
+                        correcto = devolverDimension(barquito, posInicial, posFinal, orientacion);
+                        if (correcto) {
+
+                            if (posValida(orientacion, columnaIni, columnaFin, filaIni, filaFin)) {
+                                System.out.println("Es correcto");
+                                AnadirbarcoTablero(orientacion, posInicial, posFinal);
+                                bloqueaAdyacentes("H", columnaIni, columnaFin, filaIni, filaFin);
+                            } else {
+                                System.out.println("La posición del barco es invalida."
+                                        + " Se encuentra dentro de los limites de otro barco.");
+                            }
+                        } else {
+                            System.out.println("Dimensión del barco erronea - "
+                                    + "Dimensión Esperada: " + barquito.getTamanyo());
+                        }
+                    } while (!correcto);
                     break;
             }
 
@@ -113,7 +136,7 @@ public class ConsolaV2 {
         }
     }
 
-    //No funciona bien
+//No funciona bien
     public boolean posValida(String orientacion, int colInicial, int colFinal, int filInicial, int filFinal) {
         //comprobar que las posiciones no sean 0-0 ni lenght antes del for.(que no se salgan del tablero)
         boolean correcto = true;
@@ -121,14 +144,14 @@ public class ConsolaV2 {
         if (orientacion.equals("H")) {
             for (int i = colInicial; i < colFinal; i++) {
                 if (jugador.tablero.tamanyo[filInicial][i] != 0) {
-                    System.out.println("Posición invalida.");
+                    System.out.println("Posición invalida!");
                     correcto = false;
                 }
             }
         } else {
             for (int i = filInicial; i < filFinal; i++) {
                 if (jugador.tablero.tamanyo[i][colInicial] != 0) {
-                    System.out.println("Posición invalida.");
+                    System.out.println("Posición invalida!");
                     correcto = false;
                 }
             }
@@ -138,7 +161,7 @@ public class ConsolaV2 {
 
     //Devuelve la dimension del barco que se ha añadido, para hacer comprobaciones.
     //Este metodo debería debería ser intercambiado por funciones de la clase Barco.
-    public boolean devolverDimension(String posInicial, String posFinal, String orientacion) {
+    public boolean devolverDimension(Barco barquito, String posInicial, String posFinal, String orientacion) {
         String ColumnaIncial = posInicial.substring(0, 1);
         String FilaIncial = posInicial.substring(posInicial.indexOf(ColumnaIncial) + 1);
 
@@ -149,13 +172,18 @@ public class ConsolaV2 {
         int FilaIni = Integer.parseInt(FilaIncial);
 
         int ColumnaFin = Tablero.ColumnaAInteger(ColumnaFinal);
+
         int FilaFin = Integer.parseInt(FilaFinal);
+        System.out.println("Fila");
 
         if (orientacion.equals("H")) {
-
+            System.out.println("Tamaño del barco Dado = " + ((ColumnaFin - ColumnaIni) + 1));
+            return (ColumnaFin - ColumnaIni) + 1 == barquito.getTamanyo();
+        } else {
+            System.out.println("Tamaño del barco Dado = " + ((FilaFin - FilaIni) + 1));
+            return (FilaFin - FilaIni) + 1 == barquito.getTamanyo();
         }
 
-        return true;
     }
 
     public void AnadirbarcoTablero(String orientacion, String posInicial, String posFinal) {
@@ -316,7 +344,7 @@ public class ConsolaV2 {
                 //FilaFin es menor 
                 /////////////
                 ///FALLA ESTO
-                    jugador.tablero.tamanyo[FilaIni][ColumnaFin + 1] = 2;
+                jugador.tablero.tamanyo[FilaIni][ColumnaFin + 1] = 2;
                 /////////////
                 /////////////
                 //MIRA CON DEBUGGER EL VALOR DE COLUMFINAL

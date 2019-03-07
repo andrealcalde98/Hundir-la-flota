@@ -2,7 +2,7 @@ package vista;
 
 import modelo.Tablero;
 
-import controlador.ConsolaV2;
+import controlador.ConsolaV3;
 import java.util.Scanner;
 import modelo.Barco;
 import modelo.Jugador;
@@ -16,7 +16,7 @@ public class HundirFloa {
     static Scanner in = new Scanner(System.in);
     static Tablero tabJug1, tabJug2;
     static Jugador j1, j2;
-    static ConsolaV2 consolaJ1, consolaJ2;
+    static ConsolaV3 consolaJ1, consolaJ2;
 
     public static void main(String[] args) {
 
@@ -62,8 +62,8 @@ public class HundirFloa {
         tabJug1.tableroVAcio();
         tabJug2.tableroVAcio();
 
-        consolaJ1 = new ConsolaV2(j1);
-        consolaJ2 = new ConsolaV2(j2);
+        consolaJ1 = new ConsolaV3(j1);
+        consolaJ2 = new ConsolaV3(j2);
 
     }
 
