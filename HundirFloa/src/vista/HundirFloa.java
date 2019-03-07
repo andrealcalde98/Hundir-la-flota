@@ -2,7 +2,7 @@ package vista;
 
 import modelo.Tablero;
 import controlador.consola;
-import controlador.consolaV2;
+import controlador.ConsolaV2;
 import java.util.Scanner;
 import modelo.Barco;
 import modelo.Jugador;
@@ -14,31 +14,23 @@ import modelo.Jugador;
 public class HundirFloa {
 
     static Scanner in = new Scanner(System.in);
+    static Tablero tabJug1, tabJug2;
+    static Jugador j1, j2;
+    static ConsolaV2 consolaJ1, consolaJ2;
 
     public static void main(String[] args) {
 
-        Tablero tabJug1 = new Tablero(16);
-        Tablero tabJug2 = new Tablero(15);
-        
-        Jugador j1 = new Jugador("Jugador 1", tabJug1, tabJug2);
-        Jugador j2 = new Jugador("Jugador 2", tabJug2, tabJug1);
-        
-        tabJug1.tableroVAcio();
-        tabJug2.tableroVAcio();
-        
-        consolaV2 con1 = new consolaV2(j1);
-        consolaV2 con2 = new consolaV2(j2);  
-        
+        inicializar();
         
         System.out.println("///////////////");
         System.out.println(j1.tablero.tamanyo.length);
         System.out.println(Tablero.ColumnaAInteger("A"));
         //System.out.println(j1.tablero.ColumnaALetra(12));
-                System.out.println("///////////////");
-        
-        con1.anadirBarco();
-        con2.anadirBarco();
-        
+        System.out.println("///////////////");
+
+        consolaJ1.iniciarBarco();
+        consolaJ2.iniciarBarco();
+
         System.out.println("Tamaño del tablero de " + tabJug1.tamanyo.length + " por " + tabJug1.tamanyo.length);
         /*tab.mostrarTablero();
 
@@ -55,9 +47,23 @@ public class HundirFloa {
 
          */
 
-
         //System.out.println("Introduce posicion a descubrir");
         //String posicion = in.next();
+    }
+
+    public static void inicializar() {
+
+        tabJug1 = new Tablero(16);
+        tabJug2 = new Tablero(16);
+
+        j1 = new Jugador("Jugador 1", tabJug1, tabJug2);
+        j2 = new Jugador("Jugador 2", tabJug2, tabJug1);
+
+        tabJug1.tableroVAcio();
+        tabJug2.tableroVAcio();
+
+        consolaJ1 = new ConsolaV2(j1);
+        consolaJ2 = new ConsolaV2(j2);
 
     }
 
