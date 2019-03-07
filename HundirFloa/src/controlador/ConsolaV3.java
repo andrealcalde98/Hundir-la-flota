@@ -5,7 +5,8 @@
  */
 package controlador;
 
-
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import modelo.Barco;
 import modelo.Jugador;
@@ -29,6 +30,43 @@ public class ConsolaV3 {
     //x2 Cruceros - 3 casillas
     //x3 Submarinos - 2 casillas
     //x4 Desctructores - 1 casilla
+
+    public String tirada() {
+        String resultado = "";
+        boolean sigue = false;
+        resultado += "\nTurno del Jugador " + jugador.getId();
+        resultado += ("\nA donde quieres enviar tus torpedos?");
+        jugador.tabEnemigo.mostrarTablero();
+        int columna = posicionColumna(jugador.tablero.tamanyo);
+        int fila = posicionFila(jugador.tablero.tamanyo);
+        resultado += ("\nJugador " + jugador.getId()
+                + " lanza sus torpedos a " + Tablero.ColumnaALetra(columna)
+                + "" + fila + " y...");
+        if (comprobarHit(columna, fila)) {
+            sigue = true;
+            resultado += ("\nAcierta ");
+            for (Barco barquito : jugador.listaBarcos) {
+                 barquito.cordenadas.remove(barquito.cordenadas.
+                         indexOf(Integer.toString(columna)+Integer.toString(fila)));
+                 jugador.tabEnemigo.tamanyo[columna][fila] = 5;
+                 if (barquito.cordenadas.isEmpty()) {
+                    resultado+=(" Hundiendo un " + barquito.getTipo() +"!");
+                }                 
+            }
+        }else {
+            resultado+=("Agua!");
+            jugador.tabEnemigo.tamanyo[columna][fila] = 4;
+        }
+ 
+    
+    return resultado ;
+}
+
+//Este metodo estaba a medio implementar, junto a otros, iba a substituirse
+//por un metodo más sencillo dentro de la clase "Barco"
+public boolean comprobarHit(int Cini, int Fini) {
+        return jugador.Enemic.tablero.tamanyo[Cini][Fini] == 1;
+    }
 
     public void iniciarBarco() {
         System.out.println("Añade los barcos:");
@@ -90,7 +128,10 @@ public class ConsolaV3 {
                                     + "Dimensión Esperada: " + barquito.getTamanyo());
                         }
                     } while (!correcto);
-
+                    barquito.setCordenadas(posInicial, posFinal);
+                    System.out.println("\n//////////////////////\n"
+                            + barquito.getTipo() + " Creado con cordenadas "
+                            + barquito.getCordenadas());
                     break;
 
                 case "H":
@@ -127,10 +168,14 @@ public class ConsolaV3 {
                                     + "Dimensión Esperada: " + barquito.getTamanyo());
                         }
                     } while (!correcto);
+                    barquito.setCordenadas(posInicial, posFinal);
+                    System.out.println("\n//////////////////////\n"
+                            + barquito.getTipo() + " Creado con cordenadas "
+                            + barquito.getCordenadas());
+
                     break;
             }
 
-            jugador.tablero.mostrarTablero();
             System.out.println("Barco: " + posInicial + "-" + posFinal);
             System.out.println("------------------------");
         }
@@ -251,17 +296,6 @@ public class ConsolaV3 {
         } while (fila < 0 || fila >= tablero.length);
 
         return fila;
-    }
-
-    public static void comprobarHit(int Cini, int Fini, int[][] tablero) {
-
-        int pos = tablero[Cini][Fini];
-        if (pos != 0) {
-            System.out.println("Agua");
-        } else {
-            System.out.println("Tocado");
-            pos = 0; // poner que aqui el 0 pase de nuevo a ser una X
-        }
     }
 
     //Este método es demasiado largo.

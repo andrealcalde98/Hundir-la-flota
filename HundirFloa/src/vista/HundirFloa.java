@@ -3,6 +3,8 @@ package vista;
 import modelo.Tablero;
 
 import controlador.ConsolaV3;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import modelo.Barco;
 import modelo.Jugador;
@@ -20,35 +22,18 @@ public class HundirFloa {
 
     public static void main(String[] args) {
 
-        inicializar();
+        List<String> a = new ArrayList<>();
+        a.add("e");
+        a.add("i");
+        a.remove(a.indexOf("e"));
+        for (String string : a) {
+            System.out.println(string);
+        }
+        a.remove(a.indexOf("i"));
+        System.out.println(a.isEmpty());
         
-        System.out.println("///////////////");
-        System.out.println(j1.tablero.tamanyo.length);
-        System.out.println(Tablero.ColumnaAInteger("A"));
-        //System.out.println(j1.tablero.ColumnaALetra(12));
-        System.out.println("///////////////");
-
-        consolaJ1.iniciarBarco();
-        consolaJ2.iniciarBarco();
-
-        System.out.println("Tamaño del tablero de " + tabJug1.tamanyo.length + " por " + tabJug1.tamanyo.length);
-        /*tab.mostrarTablero();
-
-        tab.tamanyo[0][Tablero.FilaAInteger("A")] = 3;
-        tab.tamanyo[1][Tablero.FilaAInteger("A")] = 3;
-        tab.tamanyo[2][Tablero.FilaAInteger("A")] = 3;
-
-        tab.tamanyo[2][Tablero.FilaAInteger("C")] = 3;
-        tab.tamanyo[2][Tablero.FilaAInteger("D")] = 3;
-        tab.tamanyo[2][Tablero.FilaAInteger("E")] = 3;
-        tab.tamanyo[2][Tablero.FilaAInteger("F")] = 3;
-
-        tab.mostrarTablero();
-
-         */
-
-        //System.out.println("Introduce posicion a descubrir");
-        //String posicion = in.next();
+       // inicializar();
+       // aJugar();
     }
 
     public static void inicializar() {
@@ -59,12 +44,26 @@ public class HundirFloa {
         j1 = new Jugador("Jugador 1", tabJug1, tabJug2);
         j2 = new Jugador("Jugador 2", tabJug2, tabJug1);
 
+        j1.setEnemic(j2);
+        j2.setEnemic(j1);
+
         tabJug1.tableroVAcio();
         tabJug2.tableroVAcio();
 
         consolaJ1 = new ConsolaV3(j1);
         consolaJ2 = new ConsolaV3(j2);
 
+        consolaJ1.iniciarBarco();
+        consolaJ2.iniciarBarco();
+
+    }
+
+    public static void aJugar() {
+        while (j1.getVidas() > 0 && j2.getVidas() > 0) {
+            consolaJ1.comprobarHit(0, 0);
+            consolaJ2.comprobarHit(0, 0);
+
+        }
     }
 
 }

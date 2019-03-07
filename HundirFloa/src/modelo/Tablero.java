@@ -10,7 +10,6 @@ public class Tablero {
 
     public int[][] tamanyo;
     public Barco[] listaBarcos;
-    public static final String ANSI_BLACK_BACKGROUND = "\u001B[40m";
 
     public Tablero(int cuadrillas) {
         this.tamanyo = new int[cuadrillas][cuadrillas];
@@ -39,10 +38,19 @@ public class Tablero {
                         System.out.print("  X  ");
                         break;
                     case 1:
-                        System.out.print("  X  ");
+                        System.out.print("  B  ");
                         break;
-                    default:
+                    case 2:
                         System.out.print("  A  ");
+                        break;
+                    case 3:
+                        System.out.print("  T  ");
+                        break;
+                    case 4:
+                        System.out.print("  W  ");
+                        break;
+                    case 5:
+                        System.out.print("  H  ");
                         break;
                 }
             }

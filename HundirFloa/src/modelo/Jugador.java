@@ -13,22 +13,23 @@ import java.util.Map;
  */
 public class Jugador {
 
-    public String id;
+    private String id;
     public Barco[] listaBarcos;
     public Tablero tablero;
-    public Tablero enemigo;
+    public Tablero tabEnemigo;
+    public Jugador Enemic;
     public Map<String, Boolean> tiradas;
     public int vidas;
 
     public Jugador(String id, Tablero tablero, Tablero enemigo) {
         this.id = id;
-        this.listaBarcos = listaBarcos;
         this.tablero = tablero;
-        this.enemigo = enemigo;
+        this.tabEnemigo = enemigo;
         this.listaBarcos = IniciarBarcos();
+        this.vidas = iniciarVidas();
     }
 
-    public Barco[] IniciarBarcos() {
+    public final Barco[] IniciarBarcos() {
         Barco[] Barcos = new Barco[]{
             new Barco("Acorazado", 4),
             new Barco("Crucero 1", 3),
@@ -42,5 +43,39 @@ public class Jugador {
             new Barco("Destructor 4", 1),};
         return Barcos;
     }
+    
+    public final int iniciarVidas(){
+        int vida = 0;
+        for (Barco barco : listaBarcos) {
+            vida+= barco.getVidas();
+        }
+        return vida;
+    }
+
+    public Jugador getEnemic() {
+        return Enemic;
+    }
+
+    public void setEnemic(Jugador Enemic) {
+        this.Enemic = Enemic;
+    }
+
+    public int getVidas() {
+        return vidas;
+    }
+
+    public void setVidas(int vidas) {
+        this.vidas = vidas;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+    
+    
 
 }

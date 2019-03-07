@@ -5,6 +5,10 @@
  */
 package modelo;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  *
  * @author Lorenzo
@@ -14,11 +18,12 @@ public class Barco {
     private String tipo;
     private int tamanyo;
     private int vidas;
-    private String[] cordenadas;
+    public  ArrayList<String> cordenadas;
 
     public Barco(String tipo, int tamanyo) {
         this.tipo = tipo;
         this.tamanyo = tamanyo;
+        this.cordenadas = new ArrayList<>();
     }
 
     public String getTipo() {
@@ -33,8 +38,13 @@ public class Barco {
         return vidas;
     }
 
-    public String[] getCordenadas() {
+    public ArrayList getCordenadas() {
         return cordenadas;
     }
+
+    public void setCordenadas(String... cordenadas) {
+        this.cordenadas.addAll(Arrays.asList(cordenadas));
+    }
+    
 
 }
