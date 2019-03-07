@@ -137,19 +137,20 @@ public class ConsolaV3 {
     }
 
 //No funciona bien
+    //Si hay "A" se la suda
     public boolean posValida(String orientacion, int colInicial, int colFinal, int filInicial, int filFinal) {
         //comprobar que las posiciones no sean 0-0 ni lenght antes del for.(que no se salgan del tablero)
         boolean correcto = true;
 
         if (orientacion.equals("H")) {
-            for (int i = colInicial; i < colFinal; i++) {
+            for (int i = colInicial; i <= colFinal; i++) {
                 if (jugador.tablero.tamanyo[filInicial][i] != 0) {
                     System.out.println("Posición invalida!");
                     correcto = false;
                 }
             }
         } else {
-            for (int i = filInicial; i < filFinal; i++) {
+            for (int i = filInicial; i <= filFinal; i++) {
                 if (jugador.tablero.tamanyo[i][colInicial] != 0) {
                     System.out.println("Posición invalida!");
                     correcto = false;
@@ -243,7 +244,7 @@ public class ConsolaV3 {
             try {
                 fila = in.nextInt();
             } catch (Exception e) {
-                System.out.println("Eso no es un numero, broder");
+                System.out.println("Eso no es un Integer, amigo");
                 fila = -1;
                 in.nextLine();
             }

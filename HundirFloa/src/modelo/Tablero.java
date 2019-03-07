@@ -1,5 +1,7 @@
 package modelo;
 
+import java.io.Console;
+
 /**
  *
  * @author Andre Alcalde, Lorenzo Scardino i Raúl Barrero
@@ -8,6 +10,7 @@ public class Tablero {
 
     public int[][] tamanyo;
     public Barco[] listaBarcos;
+    public static final String ANSI_BLACK_BACKGROUND = "\u001B[40m";
 
     public Tablero(int cuadrillas) {
         this.tamanyo = new int[cuadrillas][cuadrillas];
@@ -31,17 +34,19 @@ public class Tablero {
         for (int i = 0; i < tamanyo.length; i++) {
             System.out.printf("%-3s", i);
             for (int j = 0; j < tamanyo.length; j++) {
-                if (tamanyo[i][j] == 0) {
-                    System.out.print("  X  ");
-
-                } else if (tamanyo[i][j] == 1) {
-                    System.out.print("  0  ");
-
-                } else {
-                    System.out.print("  A  ");
+                switch (tamanyo[i][j]) {
+                    case 0:
+                        System.out.print("  X  ");
+                        break;
+                    case 1:
+                        System.out.print("  X  ");
+                        break;
+                    default:
+                        System.out.print("  A  ");
+                        break;
                 }
             }
-            System.out.println("");
+            System.out.println(" ");
         }
     }
 
