@@ -1,6 +1,7 @@
 package vista;
 
 import modelo.Tablero;
+
 import controlador.ConsolaV2;
 import java.util.Scanner;
 import modelo.Barco;
