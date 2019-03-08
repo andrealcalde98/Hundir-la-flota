@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  *
- * @author Lorenzo
+ * @author Andre Alcalde, Lorenzo Scardino i Raúl Barrero
  */
 public class Barco {
 

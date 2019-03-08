@@ -55,7 +55,6 @@ public class Tablero {
         }
     }
 
-//Son columnas en verda
 //Las columnas sulen mostrarse como letras, esto es simplemente visual.
 //No debería afectar al codigo.
     public static char ColumnaALetra(int a) {

@@ -9,7 +9,7 @@ import java.util.Map;
 
 /**
  *
- * @author Lorenzo
+ * @author Andre Alcalde, Lorenzo Scardino i Raúl Barrero
  */
 public class Jugador {
 
@@ -49,7 +49,6 @@ public class Jugador {
         return Barcos;
     }
 
-    //Movida bastante incorrecta
     public final int iniciarVidas() {
         int vida = 0;
         for (Barco barco : listaBarcos) {

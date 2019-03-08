@@ -10,7 +10,7 @@ import modelo.*;
 
 /**
  *
- * @author Lorenzo
+ *  @author Andre Alcalde, Lorenzo Scardino i Raúl Barrero
  */
 public class ConsolaV3 {
 
@@ -186,7 +186,7 @@ public class ConsolaV3 {
     }
 
     //Devuelve la dimension del barco que se ha añadido, para hacer comprobaciones.
-    //Este metodo debería debería ser intercambiado por funciones de la clase Barco.
+    //Este metodo debería ser intercambiado por funciones de la clase Barco.
     public boolean devolverDimension(Barco barquito, String posInicial, String posFinal, String orientacion) {
         String ColumnaIncial = posInicial.substring(0, 1);
         String FilaIncial = posInicial.substring(posInicial.indexOf(ColumnaIncial) + 1);
@@ -276,8 +276,7 @@ public class ConsolaV3 {
         return fila;
     }
 
-    //Este método es demasiado largo.
-    //Hay que comprobar muchas cosas.
+   
     //Falla si se ponen los barcos al revés.
     //Da un problema especifico si pones un barco vertical con posicion inicial en A0.
     public void bloqueaAdyacentes(String orientacion, int ColumnaIni, int ColumnaFin, int FilaIni, int FilaFin) {
