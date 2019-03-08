@@ -1,7 +1,5 @@
 package modelo;
 
-import java.io.Console;
-
 /**
  *
  * @author Andre Alcalde, Lorenzo Scardino i Raúl Barrero
@@ -9,7 +7,6 @@ import java.io.Console;
 public class Tablero {
 
     public int[][] tamanyo;
-    public Barco[] listaBarcos;
 
     public Tablero(int cuadrillas) {
         this.tamanyo = new int[cuadrillas][cuadrillas];
@@ -47,10 +44,10 @@ public class Tablero {
                         System.out.print("  T  ");
                         break;
                     case 4:
-                        System.out.print("  W  ");
+                        System.out.print("  -  ");
                         break;
                     case 5:
-                        System.out.print("  H  ");
+                        System.out.print("  #  ");
                         break;
                 }
             }

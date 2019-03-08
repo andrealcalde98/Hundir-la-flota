@@ -21,12 +21,17 @@ public class Jugador {
     public Map<String, Boolean> tiradas;
     public int vidas;
 
-    public Jugador(String id, Tablero tablero, Tablero enemigo) {
-        this.id = id;
+    public Jugador(Tablero tablero) {
         this.tablero = tablero;
-        this.tabEnemigo = enemigo;
+        this.tabEnemigo = iniciarTabEnemigo();
         this.listaBarcos = IniciarBarcos();
         this.vidas = iniciarVidas();
+    }
+
+    public final Tablero iniciarTabEnemigo() {
+        Tablero a = new Tablero(16);
+        a.tableroVAcio();
+        return a;
     }
 
     public final Barco[] IniciarBarcos() {
@@ -40,14 +45,15 @@ public class Jugador {
             new Barco("Destructor 1", 1),
             new Barco("Destructor 2", 1),
             new Barco("Destructor 3", 1),
-            new Barco("Destructor 4", 1),};
+            new Barco("Destructor 4", 1),};     
         return Barcos;
     }
-    
-    public final int iniciarVidas(){
+
+    //Movida bastante incorrecta
+    public final int iniciarVidas() {
         int vida = 0;
         for (Barco barco : listaBarcos) {
-            vida+= barco.getVidas();
+            vida += barco.getTamanyo();
         }
         return vida;
     }
@@ -75,7 +81,5 @@ public class Jugador {
     public void setId(String id) {
         this.id = id;
     }
-    
-    
 
 }

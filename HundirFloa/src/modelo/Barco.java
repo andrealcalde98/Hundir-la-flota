@@ -17,7 +17,6 @@ public class Barco {
 
     private String tipo;
     private int tamanyo;
-    private int vidas;
     public  ArrayList<String> cordenadas;
 
     public Barco(String tipo, int tamanyo) {
@@ -32,10 +31,6 @@ public class Barco {
 
     public int getTamanyo() {
         return tamanyo;
-    }
-
-    public int getVidas() {
-        return vidas;
     }
 
     public ArrayList getCordenadas() {
